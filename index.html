@@ -2,6 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Our Love Playlist ❤️</title>
 
 <style>
@@ -13,40 +14,40 @@ body{
     background:
         radial-gradient(circle at top,#1b1b1b,#0d0d0d 70%),
         linear-gradient(180deg,#000,#111);
-    height:100vh;
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
     color:#fff;
+    padding:16px;
 }
 
 /* Player */
 .player{
     background:linear-gradient(180deg,#1b1b1b,#141414);
-    width:350px;
+    width:90vw;              /* RESPONSIF */
+    max-width:360px;         /* BATAS AMAN */
+    min-width:300px;
     border-radius:26px;
     padding:22px;
     box-shadow:
         0 30px 60px rgba(0,0,0,.9),
         inset 0 1px 0 rgba(255,255,255,.03);
     backdrop-filter:blur(6px);
-    position:relative;
 }
 
 /* Playlist Header */
 .playlist-header{
     text-align:center;
-    margin-bottom:16px;
+    margin-bottom:14px;
 }
 .playlist-title{
-    font-size:1.2em;
+    font-size:1.15em;
     font-weight:600;
-    letter-spacing:.5px;
 }
 .playlist-sub{
     font-size:.75em;
     color:#9a9a9a;
-    margin-top:2px;
     font-style:italic;
 }
 
@@ -54,12 +55,11 @@ body{
 .cover{
     width:100%;
     aspect-ratio:1/1;
+    max-height:300px;
     border-radius:18px;
     overflow:hidden;
-    margin-bottom:16px;
-    box-shadow:
-        0 18px 35px rgba(0,0,0,.8),
-        inset 0 0 0 1px rgba(255,255,255,.04);
+    margin-bottom:14px;
+    box-shadow:0 18px 35px rgba(0,0,0,.8);
     transition:.4s ease;
 }
 .cover.playing{
@@ -75,14 +75,12 @@ body{
 
 /* Info */
 .song-title{
-    font-size:1.15em;
+    font-size:1.1em;
     font-weight:600;
-    margin-top:2px;
 }
 .artist{
-    font-size:.9em;
+    font-size:.85em;
     color:#b3b3b3;
-    margin-top:2px;
 }
 .since{
     font-size:.75em;
@@ -95,8 +93,8 @@ body{
     display:flex;
     justify-content:center;
     gap:6px;
-    margin:16px 0 12px;
-    height:26px;
+    margin:14px 0;
+    height:22px;
 }
 .bar{
     width:5px;
@@ -104,23 +102,15 @@ body{
     border-radius:6px;
     animation:bounce 1.1s infinite ease-in-out;
     animation-play-state:paused;
-    box-shadow:0 0 6px rgba(29,185,84,.5);
 }
-.bar:nth-child(1){animation-delay:0s}
-.bar:nth-child(2){animation-delay:.15s}
-.bar:nth-child(3){animation-delay:.3s}
-.bar:nth-child(4){animation-delay:.15s}
-.bar:nth-child(5){animation-delay:0s}
-
 @keyframes bounce{
-    0%,100%{height:8px}
-    50%{height:26px}
+    0%,100%{height:6px}
+    50%{height:22px}
 }
 
 /* Progress */
 .progress-container{
-    margin-top:6px;
-    position:relative; /* untuk tombol loop */
+    position:relative;
 }
 .progress{
     width:100%;
@@ -128,38 +118,24 @@ body{
     background:#262626;
     border-radius:10px;
     overflow:hidden;
-    cursor:pointer;
 }
 .progress-bar{
     height:100%;
     width:0%;
     background:linear-gradient(90deg,#1db954,#1ed760);
-    box-shadow:0 0 8px rgba(29,185,84,.6);
 }
 
-/* Loop Button di atas progress */
-.progress-container button#loopBtn{
+/* Loop Button */
+#loopBtn{
     position:absolute;
-    top:-40px; /* bisa sesuaikan posisi naik */
+    top:-34px;
     right:0;
-    background:none; /* hilangkan warna hitam */
+    background:none;
     border:none;
     color:#dcdcdc;
-    font-size:2.0em;
-    width:32px;
-    height:32px;
+    font-size:1.6em;
     cursor:pointer;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    transition:0.25s;
-    z-index:10;
 }
-.progress-container button#loopBtn:hover{
-    color:#1db954;
-    transform:scale(1.1);
-}
-
 
 /* Time */
 .time{
@@ -176,7 +152,6 @@ body{
     font-size:.85em;
     color:#1db954;
     text-align:center;
-    letter-spacing:.3px;
 }
 
 /* Controls */
@@ -184,34 +159,30 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    gap:16px;
-    margin-top:20px;
+    gap:14px;
+    margin-top:18px;
 }
 .controls button{
     border:none;
     background:none;
     color:#dcdcdc;
-    font-size:1.6em;
+    font-size:1.5em;
     cursor:pointer;
-    transition:.25s;
-}
-.controls button:hover{
-    color:#1db954;
-    transform:scale(1.1);
 }
 .play{
-    width:64px;
-    height:64px;
+    width:56px;
+    height:56px;
     border-radius:50%;
     background:linear-gradient(145deg,#1ed760,#1db954);
     color:#000;
-    font-size:1.5em;
-    box-shadow:
-        0 0px 5px rgba(29,185,84,.45),
-        inset 0 -2px 6px rgba(0,0,0,.35);
+    font-size:1.3em;
 }
-.play:hover{
-    transform:scale(1.08);
+
+/* HP KECIL */
+@media(max-width:360px){
+    .playlist-title{font-size:1.05em}
+    .song-title{font-size:1.05em}
+    .play{width:52px;height:52px}
 }
 </style>
 </head>
@@ -226,7 +197,7 @@ body{
     </div>
 
     <div class="cover" id="cover">
-        <img src="foto-hendi.jpeg" alt="Hendi Prasetya">
+        <img src="foto-hendi.jpeg">
     </div>
 
     <div class="song-title" id="title">Our Song</div>
@@ -245,7 +216,7 @@ body{
         <div class="progress" id="progress">
             <div class="progress-bar" id="progressBar"></div>
         </div>
-        <button id="loopBtn" onclick="toggleLoop()" title="Ulang lagu">⟳</button>
+        <button id="loopBtn" onclick="toggleLoop()">⟳</button>
         <div class="time">
             <span id="current">0:00</span>
             <span id="duration">0:00</span>
@@ -266,15 +237,14 @@ body{
 
 <script>
 const playlist=[
-    {title:"Our Song",src:"lagu1.mp3"},
-    {title:"Only Us",src:"lagu2.mp3"},
-    {title:"Forever With You",src:"lagu3.mp3"},
-    {title:"Still Yours",src:"lagu4.mp3"},
-    {title:"Always You",src:"lagu5.mp3"}
+ {title:"Our Song",src:"lagu1.mp3"},
+ {title:"Only Us",src:"lagu2.mp3"},
+ {title:"Forever With You",src:"lagu3.mp3"},
+ {title:"Still Yours",src:"lagu4.mp3"},
+ {title:"Always You",src:"lagu5.mp3"}
 ];
 
-let index=0;
-let isLoop=false;
+let index=0,isLoop=false;
 const audio=document.getElementById("audio");
 const playBtn=document.getElementById("playBtn");
 const loopBtn=document.getElementById("loopBtn");
@@ -287,86 +257,69 @@ const currentEl=document.getElementById("current");
 const durationEl=document.getElementById("duration");
 
 function loadSong(i){
-    audio.src=playlist[i].src;
-    titleEl.textContent=playlist[i].title;
+ audio.src=playlist[i].src;
+ titleEl.textContent=playlist[i].title;
 }
 loadSong(index);
 
 function togglePlay(){
-    if(audio.paused){
-        audio.play();
-        playBtn.textContent="| |";
-        bars.forEach(b=>b.style.animationPlayState="running");
-        cover.classList.add("playing");
-    }else{
-        audio.pause();
-        playBtn.textContent="▶";
-        bars.forEach(b=>b.style.animationPlayState="paused");
-        cover.classList.remove("playing");
-    }
+ if(audio.paused){
+  audio.play();
+  playBtn.textContent="| |";
+  bars.forEach(b=>b.style.animationPlayState="running");
+  cover.classList.add("playing");
+ }else{
+  audio.pause();
+  playBtn.textContent="▶";
+  bars.forEach(b=>b.style.animationPlayState="paused");
+  cover.classList.remove("playing");
+ }
 }
 
 function toggleLoop(){
-    isLoop=!isLoop;
-    loopBtn.style.color=isLoop?"#1db954":"#dcdcdc";
+ isLoop=!isLoop;
+ loopBtn.style.color=isLoop?"#1db954":"#dcdcdc";
 }
 
 function nextSong(){
-    index=(index+1)%playlist.length;
-    loadSong(index);
-    audio.play();
-    playBtn.textContent="| |";
+ index=(index+1)%playlist.length;
+ loadSong(index);audio.play();
 }
 function prevSong(){
-    index=(index-1+playlist.length)%playlist.length;
-    loadSong(index);
-    audio.play();
-    playBtn.textContent="| |";
+ index=(index-1+playlist.length)%playlist.length;
+ loadSong(index);audio.play();
 }
 
-// Auto update progress bar & time
 audio.addEventListener("timeupdate",()=>{
-    const percent=(audio.currentTime/audio.duration)*100;
-    progressBar.style.width=percent+"%";
-    currentEl.textContent=formatTime(audio.currentTime);
-    durationEl.textContent=formatTime(audio.duration);
+ const percent=(audio.currentTime/audio.duration)*100;
+ progressBar.style.width=percent+"%";
+ currentEl.textContent=formatTime(audio.currentTime);
+ durationEl.textContent=formatTime(audio.duration);
 });
 
-// Click progress bar to seek
 progress.addEventListener("click",(e)=>{
-    const width=progress.clientWidth;
-    audio.currentTime=(e.offsetX/width)*audio.duration;
+ audio.currentTime=(e.offsetX/progress.clientWidth)*audio.duration;
 });
 
 function formatTime(sec){
-    if(isNaN(sec))return "0:00";
-    const m=Math.floor(sec/60);
-    const s=Math.floor(sec%60).toString().padStart(2,"0");
-    return `${m}:${s}`;
+ if(isNaN(sec))return "0:00";
+ const m=Math.floor(sec/60);
+ const s=Math.floor(sec%60).toString().padStart(2,"0");
+ return `${m}:${s}`;
 }
 
-// Auto lanjut atau ulang lagu ketika selesai
 audio.addEventListener("ended",()=>{
-    if(isLoop){
-        audio.currentTime=0;
-        audio.play();
-    }else{
-        nextSong();
-    }
+ isLoop?(audio.currentTime=0,audio.play()):nextSong();
 });
 
-/* Love Timer */
 const startDate=new Date("2025-08-29T00:00:00");
-const loveTimer=document.getElementById("loveTimer");
 setInterval(()=>{
-    const now=new Date();
-    let diff=now-startDate;
-    if(diff<0)diff=0;
-    const d=Math.floor(diff/86400000);
-    const h=Math.floor(diff/3600000)%24;
-    const m=Math.floor(diff/60000)%60;
-    const s=Math.floor(diff/1000)%60;
-    loveTimer.textContent=`${d} Days ${h} Hours ${m} Minutes ${s} Seconds of us`;
+ const diff=Date.now()-startDate;
+ const d=Math.floor(diff/86400000);
+ const h=Math.floor(diff/3600000)%24;
+ const m=Math.floor(diff/60000)%60;
+ const s=Math.floor(diff/1000)%60;
+ loveTimer.textContent=`${d} Days ${h} Hours ${m} Minutes ${s} Seconds of us`;
 },1000);
 </script>
 
